@@ -25,3 +25,18 @@ UPDATE `users` SET `prenume` = 'Simion', `email` = 'marcu@simion.ro' WHERE `user
 DELETE FROM `student` WHERE `id`= 1;
 
 SELECT `nume`, `prenume` FROM `users` WHERE `id`= 2;
+
+
+CREATE TABLE `magazin`.`produse` (`idprodus` INT UNSIGNED NOT NULL AUTO_INCREMENT , 
+`numeprodus` VARCHAR(100) NOT NULL , `cantitate` INT NOT NULL DEFAULT '0' , `idfirma` INT NOT NULL , 
+`firma` VARCHAR(50) NOT NULL , `adresafirma` VARCHAR(100) NULL , `modelprodus` VARCHAR(50) NOT NULL , 
+`stocprodus` INT NOT NULL DEFAULT '0' , `pret` DECIMAL(10,2) NOT NULL , `categorieprodus` VARCHAR(100) NOT NULL ,
+ `descrierep` TEXT NOT NULL , `dataadaugare` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+ PRIMARY KEY (`idprodus`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
+
+
+
+ CREATE TABLE `magazin`.`firme` (`id` INT UNSIGNED NOT NULL AUTO_INCREMENT , 
+ `nume` VARCHAR(100) NOT NULL , `adresa` VARCHAR(200) NOT NULL , `dataadaugare` 
+ TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;

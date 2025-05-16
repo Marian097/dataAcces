@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const myproduct = [
+            { nume: "Laptop", pret: 3000, categorie: "electronice" },
+            { nume: "Minge", pret: 100, categorie: "sport" },
+            { nume: "Samrtphone", pret: 2500, categorie: "electronice" },
+            { nume: "Bicicleta", pret: 800, categorie: "sport" },
+        ];
+
+        function filter() {
+            myproduct.filter(prod => {
+                if (prod.categorie === "electronice" && prod.pret > 2000) {
+                    console.log(prod.nume.toLocaleUpperCase())
+                }
+            })
+        }
+
+        filter()
+
+
+        
+
+
+    </script>
+</body>
+
+</html>

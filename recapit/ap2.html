@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="list">
+        <li data-name="Marian" data-age="30">Marian - 30 ani</li>
+        <li data-name="Claudiu" data-age="21">Claudiu - 21 ani</li>
+        <li data-name="Ion" data-age="18">Ion - 18 ani</li>
+        <li data-name="Alexandru" data-age="23">Alexandru - 23 ani</li>
+        <li data-name="Stefan" data-age="32">Stefan - 32 ani</li>
+        <li data-name="Valentin" data-age="16">Valentin - 16 ani</li>
+        <li data-name="Petre" data-age="12">Petre - 12 ani</li>
+        <li data-name="Ionescu" data-age="26">Ionescu - 26 ani</li>
+    </ul>
+    <button id="bt-name-asc">Sorteaza nume crescator</button>
+    <button id="bt-name-desc">Sorteaza nume descrescator</button>
+    <button id="bt-name">Sorteaza nume alfabetic</button>
+
+    <script>
+        const list = document.getElementById("list");
+        const btAsc = document.getElementById("bt-name-asc");
+        const btDesc = document.getElementById("bt-name-desc");
+        const btName = document.getElementById("bt-name");
+
+        function afiseaza(items){
+            list.innerHTML = "";
+            items.forEach(item => {
+                list.appendChild(item)
+            })
+        };
+
+        btAsc.addEventListener("click", function(){
+            const array = Array.from(list.querySelectorAll("li"));
+            array.sort((a,b) => {
+                 return a.dataset.age - b.dataset.age;
+            })
+            afiseaza(array)
+        })
+
+        btDesc.addEventListener("click", function(){
+            const array = Array.from(list.querySelectorAll("li"));
+            array.sort((a,b) => {
+               return b.dataset.age - a.dataset.age
+            })
+            afiseaza(array)
+        })
+
+        btName.addEventListener("click", function(){
+            const array = Array.from(list.querySelectorAll("li"));
+            array.sort((a,b) => {
+                return a.dataset.name.localeCompare(b.dataset.name);
+            })
+            afiseaza(array)
+        })
+    </script>
+</body>
+
+</html>

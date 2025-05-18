@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Formular Validare</title>
+  <style>
+    .eroare { color: red; font-size: 0.9em; }
+    #status { margin-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <form id="contactForm">
+    <label>
+      Nume:
+      <input type="text" id="nume" />
+      <span class="eroare"></span>
+    </label><br />
+
+    <label>
+      Email:
+      <input type="text" id="email" />
+      <span class="eroare"></span>
+    </label><br />
+
+    <label>
+      Mesaj:
+      <textarea id="mesaj"></textarea>
+      <span class="eroare"></span>
+    </label><br />
+
+    <button type="submit">Trimite</button>
+  </form>
+
+  <div id="status"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+</body>
+</html>

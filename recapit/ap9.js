@@ -1,4 +1,4 @@
-const comenzi2 = [
+let comenzi2 = [
   {
     client: "Ana",
     produse: [
@@ -55,13 +55,13 @@ let result = comenzi2.map((element) => {
   };
 });
 
-let premiumClients = result.filter((info) => info.cartValue > 2000);
+let premiumClients = result.filter((info) => info.cartValue > 1000);
 
 let sortClient = premiumClients.sort((a, b) => {
   return b.cartValue - a.cartValue;
 });
 
-let top3Clients = sortClient.slice(0, 3);
+let top3Clients = sortClient.slice(0, 4);
 
 let list = document.getElementById("listaPremium");
 
@@ -124,9 +124,9 @@ function afiseazaLista3()
     });
 
     const top = rezultat
-    .filter(info => info.total > 2000)
+    .filter(info => info.total >= 1000)
     .sort((a,b) => {return b.total - a.total})
-    .slice(0 , 3)
+    .slice(0 , 4)
 
 
     if (top.length === 0)
@@ -140,7 +140,35 @@ function afiseazaLista3()
         li.textContent = `✅${c.client} – ${c.total} lei`
         list.appendChild(li)
     })
-}
+};
+
+
+const deleteBtn = document.getElementById("bt-delete");
+
+
+deleteBtn.addEventListener("click", function(){
+  let name = document.getElementById("client").value.toLowerCase();
+
+  let clientTrue = comenzi2.find(c => {
+    return c.client.toLowerCase() === name});
+
+  if(clientTrue && name !=="")
+  {
+   comenzi2 = comenzi2.filter(c => {
+    return c.client.toLowerCase() !== name});
+  }
+  else
+  {
+    alert("Clientul nu a fost gasit.")
+    return
+  }
+
+  form.reset()
+  afiseazaLista3()
+})
+
+
+
 
 
 

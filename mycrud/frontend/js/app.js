@@ -102,6 +102,7 @@ $(document).ready(function ($) {
                 $('#email').val(res.data.email);
                 $('#age').val(datan);
                 $('#phone').val(res.data.telefon);
+                $("#cnp").val(res.data.cnp);
 
 
 

@@ -43,6 +43,7 @@ export const findOne = (userId: number, callback: Function) => {
       email: row.email,
       datanastere: row.datanastere,
       telefon: row.telefon,
+      cnp: row.cnp,
       //dataadaugare: row.dataadaugare,
     };
     callback(null, user);
@@ -71,9 +72,9 @@ export const create = (user: User, callback: Function) => {
 
 // update user
 export const update = (user: User, callback: Function) => {
-  const queryString = `UPDATE jsusers SET nume=?, prenume=? WHERE id=?`;
+  const queryString = `UPDATE jsusers SET nume=?, prenume=?, telefon=?, cnp=?  WHERE id=?`;
 
-  db.query(queryString, [user.nume, user.prenume, user.id], (err, result) => {
+  db.query(queryString, [user.nume, user.prenume, user.telefon, user.cnp, user.id], (err, result) => {
     if (err) {
       callback(err);
     }

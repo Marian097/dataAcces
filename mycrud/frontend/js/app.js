@@ -54,6 +54,7 @@ $(document).ready(function ($) {
                 { "data": "email" },
                 { "data": "telefon" },
                 { "data": "cnp" },
+                { "data": "adresa"},
                 {
                     "data": "datanastere",
                     render: $.fn.dataTable.render.moment('YYYY-MM-DDTHH:mm:ss.SSSSZ','YYYY-MM-DD' )
@@ -103,8 +104,7 @@ $(document).ready(function ($) {
                 $('#age').val(datan);
                 $('#phone').val(res.data.telefon);
                 $("#cnp").val(res.data.cnp);
-
-
+                $("#adresa").val(res.data.adresa);
 
             }
         });

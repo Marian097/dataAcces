@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root SYSTEM "ap1.dtd">
+<root>
+    <country countryCode="sr">
+        <name>Serbia</name>
+        <capital>Belgrade</capital>
+        <description>Serbia &gt; Romania</description>
+    </country>
+    <country>
+        <name>France</name>
+        <capital>Paris</capital>
+        <description>Paris &amp; Bruxeles sunt vecine</description>
+    </country>
+</root>

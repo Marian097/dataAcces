@@ -49,6 +49,7 @@ exports.userRouter = void 0;
 const express_1 = __importDefault(require("express"));
 const bodyParser = __importStar(require("body-parser"));
 const userModel = __importStar(require("../models/user"));
+const path_1 = __importDefault(require("path"));
 const userRouter = express_1.default.Router();
 exports.userRouter = userRouter;
 var jsonParser = bodyParser.json();
@@ -71,7 +72,15 @@ userRouter.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function*
 }));
 userRouter.post("/", jsonParser, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
+    console.log(req.files);
+    let fileToUplad;
+    let uploadPath;
+    fileToUplad = req.files.poza;
+    const newFileName = `${Date.now()}-_${fileToUplad.name}`;
+    uploadPath = path_1.default.join(__dirname, "..", "/uploads/", newFileName);
+    fileToUplad.mv(uploadPath);
     const newUser = req.body;
+    newUser["poza"] = newFileName;
     userModel.create(newUser, (err, userId) => {
         if (err) {
             return res.status(500).json({ "message": err.message });
@@ -81,7 +90,14 @@ userRouter.post("/", jsonParser, (req, res) => __awaiter(void 0, void 0, void 0,
 }));
 // Edit user
 userRouter.put("/:id", jsonParser, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let fileToUplad;
+    let uploadPath;
+    fileToUplad = req.files.poza;
+    const newFileName = `${Date.now()}-_${fileToUplad.name}`;
+    uploadPath = path_1.default.join(__dirname, "..", "/uploads/", newFileName);
+    fileToUplad.mv(uploadPath);
     const user = req.body;
+    user["poza"] = newFileName;
     console.log(req.body);
     userModel.update(user, (err) => {
         if (err) {

@@ -2,6 +2,9 @@ import express, {Request, Response} from "express";
 import * as bodyParser from "body-parser";
 import * as userModel from "../models/user";
 import {User} from "../types/User";
+import { UploadedFile } from "express-fileupload";
+import path from "path";
+
 const userRouter = express.Router();
 var jsonParser = bodyParser.json()
 userRouter.get("/", async (req: Request, res: Response) => {
@@ -27,7 +30,17 @@ userRouter.get("/:id", async (req: Request, res: Response) => {
 
 userRouter.post("/",jsonParser, async (req: Request, res: Response) => {
   console.log(req.body);
+  console.log(req.files);
+  
+  let fileToUplad:any;
+  let uploadPath;
+  fileToUplad = req.files!.poza as UploadedFile;
+  const newFileName = `${Date.now()}-_${fileToUplad.name}`
+  uploadPath = path.join(__dirname, "..", "/uploads/", newFileName)
+  fileToUplad.mv(uploadPath);
+
   const newUser: User = req.body;
+  newUser["poza"] = newFileName;
   userModel.create(newUser, (err: Error, userId: number) => {
     if (err) {
       return res.status(500).json({"message": err.message});
@@ -39,7 +52,17 @@ userRouter.post("/",jsonParser, async (req: Request, res: Response) => {
 
 // Edit user
 userRouter.put("/:id",jsonParser, async (req: Request, res: Response) => {
+  let fileToUplad:any;
+  let uploadPath;
+  fileToUplad = req.files!.poza as UploadedFile;
+  const newFileName = `${Date.now()}-_${fileToUplad.name}`
+  uploadPath = path.join(__dirname, "..", "/uploads/", newFileName)
+  fileToUplad.mv(uploadPath);
+  
+  
   const user: User = req.body;
+  user["poza"] = newFileName;
+  
   console.log(req.body);
   userModel.update(user, (err: Error) => {
     if (err) {

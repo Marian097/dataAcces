@@ -32,33 +32,36 @@ export const findAll = function(callback: Function){
 
 
 
-export const findOne = function(callback:Function){
-    const queryString = `SELECT * FROM users WHERE id=?`
-    db.query(queryString, (err, result) => {
-        if (err)
-        {
-            return callback(err)
+export const findOne = function(id: number, callback: Function) {
+    const queryString = `SELECT * FROM users WHERE id = ?`;
+
+    db.query(queryString, [id], (err, result) => {
+        if (err) {
+            return callback(err);
         }
 
-        let row = <RowDataPacket[]>result[0];
-        let users: User[] = [];
-        row.forEach((info) => {
-            let user: User = {
-                nume: info.nume,
-                prenume: info.prenume,
-                email: info.email,
-                telefon: info.telefon,
-                cnp: info.cnp,
-                adresa: info.adresa,
-                datanastere: info.datanastere,
-                id: info.id
-            } 
-            users.push(user);
-            const insertId = (result as ResultSetHeader).insertId;
-            callback(null, insertId)
-        })
-    })
-}
+        const rows = result as RowDataPacket[];
+
+        if (rows.length === 0) {
+            return callback(new Error("Utilizatorul nu a fost găsit."));
+        }
+
+        const row = rows[0];
+
+        const user: User = {
+            id: row.id,
+            nume: row.nume,
+            prenume: row.prenume,
+            email: row.email,
+            telefon: row.telefon,
+            cnp: row.cnp,
+            adresa: row.adresa,
+            datanastere: row.datanastere
+        };
+
+        callback(null, user);
+    });
+};
 
 
 export const create = function(user: User, callback:Function){
